@@ -1,3 +1,11 @@
+var waitForSec = (seconds) => {
+    return new Promise((resolve, reject)=>{
+      setTimeout(() => {
+          resolve()
+        }, seconds*1000);
+    })
+}
+
 class BlockGenerator {
     constructor(seconds){
         this.seconds = seconds;
@@ -10,13 +18,12 @@ class BlockGenerator {
             console.log(this.genesis);
             this.genesis.blockNumber += 1;
             if (this.started === true){
-                // return new Promise ((resolve, reject) => {
-                //     setTimeout (logBlock, this.seconds * 1000 );
-                // })
-                setTimeout (logBlock, this.seconds * 1000 );
+                waitForSec(this.seconds).then(logBlock);
             }
         };
-        setTimeout(logBlock, this.seconds * 1000);
+        waitForSec(this.seconds).then(() => {
+            logBlock();
+          });
     }
 
     stop(){
