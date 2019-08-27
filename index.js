@@ -15,7 +15,8 @@ class BlockGenerator {
     start(){
         this.started = true;
         var logBlock = () => {
-            console.log(this.genesis);
+            this.addListener(this.genesis);
+            // console.log(this.genesis);
             this.genesis.blockNumber += 1;
             if (this.started === true){
                 waitForSec(this.seconds).then(logBlock);
@@ -29,8 +30,18 @@ class BlockGenerator {
     stop(){
         this.started = false;
     }
+
+    // addListener(genesis){
+    //     console.log(new Date().toISOString());
+    //     console.log(genesis);
+    // }
+
+    removeListener(){
+
+    }
 }
 
-var gen = new BlockGenerator(1);
-gen.start();
-setTimeout(() =>{gen.stop()}, 5000);
+// var gen = new BlockGenerator(1);
+// gen.start();
+// setTimeout(() =>{gen.stop()}, 5000);
+console.log(this.block);
